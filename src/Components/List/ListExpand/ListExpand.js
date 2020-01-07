@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Animated, View, Text } from 'react-native';
+import { Animated, Platform, View, Text } from 'react-native';
 import withTheme from '../../../Theme/withTheme';
 import Ripple from '../../Ripple/Ripple';
 import Icon from '../../Icon/Icon';
@@ -83,6 +83,20 @@ class ListExpand extends Component {
     const { children, icon } = this.props;
     const { menuHeight, initialHeight } = this.state;
 
+    const contentContainerStyle =
+      Platform.OS === 'web'
+        ? {
+            width: '100%',
+            height: initialHeight,
+            zIndex: 100,
+          }
+        : {
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+          };
+
     return (
       <Animated.View
         style={{
@@ -92,13 +106,7 @@ class ListExpand extends Component {
           paddingLeft: icon ? 42 : 0,
           zIndex: 100,
         }}>
-        <View
-          style={{
-            width: '100%',
-            height: initialHeight,
-            zIndex: 100,
-          }}
-          onLayout={this.onMenuLayout}>
+        <View style={contentContainerStyle} onLayout={this.onMenuLayout}>
           {children}
         </View>
       </Animated.View>

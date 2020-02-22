@@ -22,6 +22,7 @@ class SheetBottom extends Component {
     onBackdropPress: PropTypes.func,
     onSwipeDown: PropTypes.func,
     onSwipeUp: PropTypes.func,
+    onDismiss: PropTypes.func,
     children: PropTypes.node,
     wrapperStyles: PropTypes.object,
     style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
@@ -168,6 +169,7 @@ class SheetBottom extends Component {
 
   _handlePlatform() {
     const { internalVisible } = this.state;
+    const { onDismiss } = this.props;
 
     return (
       <Modal
@@ -175,6 +177,7 @@ class SheetBottom extends Component {
         animationType={'none'}
         visible={internalVisible}
         onRequestClose={this._close}
+        onDismiss={onDismiss}
         supportedOrientations={['portrait', 'landscape']}>
         {this._renderContent()}
       </Modal>

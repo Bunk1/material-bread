@@ -27,12 +27,12 @@ class MenuItem extends Component {
     underlayColor: '#E0E0E0',
   };
   state = {
-    stateBackgroundColor: null,
+    stateBackgroundColor: undefined,
   };
   handleHover(toggle) {
     const { disabled } = this.props;
-    let implementedColor = toggle ? 'rgba(0,0,0,.12)' : null;
-    if (disabled) implementedColor = null;
+    let implementedColor = toggle ? 'rgba(0,0,0,.12)' : undefined;
+    if (disabled) implementedColor = undefined;
 
     this.setState({ stateBackgroundColor: implementedColor });
   }

@@ -67,7 +67,7 @@ class TextButton extends Component {
           .alpha(0.12)
           .rgb()
           .string()
-      : null;
+      : 'rgba(0,0,0,0)';
 
     this.setState({ stateBackgroundColor: implementedColor });
   }

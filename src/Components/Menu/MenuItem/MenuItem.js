@@ -7,6 +7,8 @@ import styles from './MenuItem.styles';
 import Ripple from '../../Ripple/Ripple.js';
 import Hoverable from '../../../Utils/Hoverable/Hoverable.js';
 
+const defaultBackgroundColor = 'rgba(0,0,0,0)';
+
 class MenuItem extends Component {
   constructor(props) {
     super(props);
@@ -27,12 +29,12 @@ class MenuItem extends Component {
     underlayColor: '#E0E0E0',
   };
   state = {
-    stateBackgroundColor: undefined,
+    stateBackgroundColor: defaultBackgroundColor,
   };
   handleHover(toggle) {
     const { disabled } = this.props;
-    let implementedColor = toggle ? 'rgba(0,0,0,.12)' : undefined;
-    if (disabled) implementedColor = undefined;
+    let implementedColor = toggle ? 'rgba(0,0,0,.12)' : defaultBackgroundColor;
+    if (disabled) implementedColor = defaultBackgroundColor;
 
     this.setState({ stateBackgroundColor: implementedColor });
   }

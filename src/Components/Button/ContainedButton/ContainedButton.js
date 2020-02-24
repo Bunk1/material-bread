@@ -146,14 +146,14 @@ class ContainedButton extends Component {
             .lighten(0.15)
             .rgb()
             .string()
-        : null;
+        : 'rgba(0,0,0,0)';
     } else {
       implementedColor = toggle
         ? color(bgColor)
             .darken(0.15)
             .rgb()
             .string()
-        : null;
+        : 'rgba(0,0,0,0)';
     }
 
     this.setState({ stateBackgroundColor: implementedColor });

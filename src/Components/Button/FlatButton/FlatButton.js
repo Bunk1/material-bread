@@ -66,7 +66,7 @@ class FlatButton extends Component {
           .darken(0.15)
           .rgb()
           .string()
-      : null;
+      : 'rgba(0,0,0,0)';
 
     this.setState({ stateBackgroundColor: implementedColor });
   }

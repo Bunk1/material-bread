@@ -21,7 +21,7 @@ class Section extends Component {
 
   handleHover(toggle) {
     this.setState({
-      backgroundColor: toggle ? 'rgba(0,0,0,.12)' : 'transparent',
+      backgroundColor: toggle ? 'rgba(0,0,0,.12)' : 'rgba(0,0,0,0)',
     });
   }
 

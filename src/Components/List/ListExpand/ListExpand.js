@@ -139,8 +139,8 @@ class ListExpand extends Component {
     let bgColor = this.getBackgroundColor();
     let implementedColor;
 
-    if (bgColor == 'transparent') {
-      implementedColor = toggle ? 'rgba(0, 0, 0, 0.12)' : null;
+    if (bgColor === 'transparent') {
+      implementedColor = toggle ? 'rgba(0, 0, 0, 0.12)' : 'rgba(0,0,0,0)';
     } else {
       if (color(bgColor).isDark()) {
         implementedColor = toggle

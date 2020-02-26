@@ -29,6 +29,7 @@ class Drawer extends PureComponent {
     drawerContent: PropTypes.node,
     children: PropTypes.node,
     animationTime: PropTypes.number,
+    useNativeDriver: PropTypes.bool,
 
     pageHeight: PropTypes.number,
     pageWidth: PropTypes.number,
@@ -62,6 +63,7 @@ class Drawer extends PureComponent {
     type: 'modal',
     position: 'absolute',
     needsSafeArea: needsSafeAreaDefault,
+    useNativeDriver: Platform.OS !== 'web',
   };
 
   state = {
@@ -113,32 +115,36 @@ class Drawer extends PureComponent {
 
   openDrawer = () => {
     const { drawerWidth, leftOffset, backdropFade } = this.state;
-    const { animationTime, scrimOpacity } = this.props;
+    const { animationTime, scrimOpacity, useNativeDriver } = this.props;
 
     Animated.parallel([
       Animated.timing(leftOffset, {
         toValue: drawerWidth,
         duration: animationTime,
+        useNativeDriver,
       }),
       Animated.timing(backdropFade, {
         toValue: scrimOpacity,
         duration: animationTime,
+        useNativeDriver,
       }),
     ]).start();
   };
 
   closeDrawer = () => {
-    const { animationTime } = this.props;
+    const { animationTime, useNativeDriver } = this.props;
     const { backdropFade, leftOffset } = this.state;
 
     Animated.parallel([
       Animated.timing(leftOffset, {
         toValue: 0,
         duration: animationTime,
+        useNativeDriver,
       }),
       Animated.timing(backdropFade, {
         toValue: 0,
         duration: animationTime,
+        useNativeDriver,
       }),
     ]).start();
   };

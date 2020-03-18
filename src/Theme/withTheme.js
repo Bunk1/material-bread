@@ -1,14 +1,13 @@
 import React from 'react';
 import ThemeContext from './ThemeContext';
-import mergeTheme from './mergeTheme';
 
 function withTheme(Component) {
-  return class extends React.Component {
+  return class extends React.PureComponent {
     render() {
       return (
         <ThemeContext.Consumer>
           {theme => {
-            return <Component theme={mergeTheme(theme)} {...this.props} />;
+            return <Component theme={theme} {...this.props} />;
           }}
         </ThemeContext.Consumer>
       );

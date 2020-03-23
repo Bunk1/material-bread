@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
-import {
-  Platform,
-  Dimensions,
-  TouchableWithoutFeedback,
-  View,
-} from 'react-native';
+import { Platform, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 
 class Hoverable extends Component {
@@ -56,38 +51,21 @@ class Hoverable extends Component {
     }
   };
 
-  _toggle = () => {
-    if (this.state.isHovered) {
-      this._handleMouseLeave();
-    } else {
-      this._handleMouseEnter();
-    }
-  };
-
   render() {
-    const { children, testID } = this.props;
+    const { children } = this.props;
 
     const child =
       typeof children === 'function'
         ? children(this.state.isHovered)
         : children;
 
-    if (Platform.OS == 'web') {
+    if (Platform.OS === 'web') {
       return React.cloneElement(React.Children.only(child), {
         onMouseEnter: this._handleMouseEnter,
         onMouseLeave: this._handleMouseLeave,
       });
     } else {
-      return (
-        <TouchableWithoutFeedback onPress={this._toggle} testID={testID}>
-          <View>
-            {React.cloneElement(React.Children.only(child), {
-              onMouseEnter: this._handleMouseEnter,
-              onMouseLeave: this._handleMouseLeave,
-            })}
-          </View>
-        </TouchableWithoutFeedback>
-      );
+      return React.Children.only(child);
     }
   }
 }
